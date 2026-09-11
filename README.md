@@ -48,6 +48,12 @@ A Figma review does not prove that the finished product is accessible and is not
 
 Install the folder as a user skill according to the documentation for your version of Codex, then mention `figma-accessibility-review` in your prompt and include a design link. To modify the skill itself, open the repository in Codex: [AGENTS.md](AGENTS.md) describes the structure and working rules.
 
+## Validation and updates
+
+This update tightens checks for clipped or covered layers, gradient contrast, proposed color fixes, image alternatives, redundant entry, authentication, and hover/focus content. The 32-check structure is preserved.
+
+Nine synthetic evaluation prompts and 46 expectations are available in [evals/evals.json](evals/evals.json). See [validation notes](evals/validation.md) for the actual test scope and results. These checks do not certify product accessibility.
+
 ## Sources and contributions
 
 For the instructions and full checklist, see [SKILL.md](SKILL.md). For sources and attribution details, see [references/provenance.md](references/provenance.md).
