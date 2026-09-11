@@ -1,57 +1,59 @@
 # Figma Accessibility Review
 
-Скилл для AI-агента, который помогает дизайнеру проверить доступность макета Figma до передачи в разработку. Возвращает отчёт с доказательствами, приоритетами и конкретными исправлениями, а также задания для проверки готового интерфейса.
+**English** | [Русский](README.ru.md)
 
-## Что проверяет
+An AI agent skill that helps designers review Figma designs for accessibility before handing them off to developers. It produces a report with evidence, priorities, and concrete fixes, along with tasks for testing the implemented interface.
 
-32 пункта охватывают контраст текста и контролов, использование цвета, зоны нажатия, подписи, изображения, состояния компонентов, крупный текст, локализацию и предусмотренное поведение интерфейса. Отдельное внимание — понятности сценария для человека, который использует скринридер.
+## What it checks
 
-Скилл различает подтверждённую проблему макета, вопрос для уточнения, рекомендацию и проверку реализации. При повторном аудите сохраняет идентификаторы замечаний и показывает изменения.
+The 32 checks cover text and control contrast, use of color, target sizes, labels, images, component states, enlarged text, localization, and intended interface behavior. Particular attention is given to whether the user journey makes sense for someone using a screen reader.
 
-## Установка
+The skill distinguishes confirmed design issues, questions that need clarification, recommendations, and implementation tests. Follow-up reviews preserve finding IDs and show what has changed.
 
-1. Скачайте или клонируйте репозиторий.
-2. Поместите **всю папку** под именем `figma-accessibility-review` в каталог пользовательских скиллов вашего агента, указанный в его документации. Копирования одного `SKILL.md` недостаточно: ему нужны файлы из `references/`.
-3. Обновите список скиллов или перезапустите агент, если этого требует ваша среда.
+## Installation
 
-Это набор Markdown-инструкций: сервер, пакетный менеджер и установка программных зависимостей не нужны.
+1. Download or clone this repository.
+2. Place the **entire folder**, named `figma-accessibility-review`, in the user-skills directory documented for your agent. Copying `SKILL.md` alone is not enough: it depends on files in `references/`.
+3. Refresh the skill list or restart your agent if your environment requires it.
 
-## Что нужно для проверки
+This is a set of Markdown instructions. No server, package manager, or software dependencies are required.
 
-Для подробного аудита подключите Figma-коннектор или MCP с доступом к нужному файлу. Агент должен уметь читать структуру, свойства элементов и изображения макета. Конкретные инструменты и способ авторизации зависят от вашей среды.
+## What you need for a review
 
-Можно передать структурированную выгрузку. Если есть только скриншот, скилл выполнит предварительный визуальный обзор и обозначит ограничения: точный контраст, интерактивные области и привязки токенов по одной картинке не подтверждаются.
+For a detailed review, connect a Figma connector or MCP server with access to the relevant file. Your agent needs to be able to read the design structure, element properties, and images. The specific tools and authentication method depend on your environment.
 
-## Примеры запросов
+You can also provide a structured export. If only a screenshot is available, the skill performs a preliminary visual review and states its limitations: exact contrast, interactive bounds, and token bindings cannot be verified from an image alone.
 
-> Проверь этот экран на доступность: [ссылка на фрейм Figma]. Это веб-интерфейс, светлая тема. Основной сценарий — заполнить форму и отправить заявку.
+## Example prompts
 
-> Проверь этот компонент и его состояния. Покажи, что подтверждено в макете, а что нужно уточнить у разработчика.
+> Review this screen for accessibility: [Figma frame link]. This is a web interface in light mode. The main user journey is to fill out the form and submit an application.
 
-> Повторно проверь эти фреймы после исправлений. Сравни с приложенным прошлым отчётом и сохрани идентификаторы замечаний.
+> Review this component and its states. Show what is confirmed in the design and what needs clarification from a developer.
 
-## Результат
+> Review these frames again after the fixes. Compare them with the attached previous report and preserve the finding IDs.
 
-- Область проверки, использованные данные и ограничения.
-- Замечания с местом в макете, доказательством, влиянием на пользователя и предложением исправления.
-- Спецификация основных действий: имя, роль, значение, состояние и ожидаемое поведение.
-- Задания разработчику и QA для проверки клавиатурой, скринридером и при увеличении текста.
-- При повторном аудите — исправленные, оставшиеся и непроверенные замечания.
+## What you get
 
-По умолчанию скилл читает макет и пишет отчёт. Изменения макета, комментарии и исправления кода требуют отдельного запроса.
+- Review scope, evidence used, and limitations.
+- Findings with their location in the design, supporting evidence, user impact, and a suggested fix.
+- Specifications for primary actions: name, role, value, state, and expected behavior.
+- Tasks for developers and QA to test keyboard access, screen-reader behavior, and enlarged text.
+- For follow-up reviews, a list of resolved, remaining, and unverified findings.
 
-Проверка Figma не доказывает доступность готового продукта и не является сертификацией WCAG. Дерево слоёв не заменяет DOM или дерево доступности; реальное поведение проверяют на работающем интерфейсе.
+By default, the skill reads the design and writes a report. Design edits, comments, and code fixes require a separate request.
+
+A Figma review does not prove that the finished product is accessible and is not WCAG certification. The layer tree is not a substitute for the DOM or accessibility tree; actual behavior must be tested in the working interface.
 
 ## Using with Codex
 
-Установите папку как пользовательский скилл в соответствии с документацией вашей версии Codex, затем укажите `figma-accessibility-review` в запросе и приложите ссылку на макет. Для изменения самого скилла откройте репозиторий в Codex: [AGENTS.md](AGENTS.md) описывает структуру и правила работы.
+Install the folder as a user skill according to the documentation for your version of Codex, then mention `figma-accessibility-review` in your prompt and include a design link. To modify the skill itself, open the repository in Codex: [AGENTS.md](AGENTS.md) describes the structure and working rules.
 
-## Источники и участие
+## Sources and contributions
 
-Рабочая инструкция и полный список проверок: [SKILL.md](SKILL.md). Источники и границы заимствований: [references/provenance.md](references/provenance.md).
+For the instructions and full checklist, see [SKILL.md](SKILL.md). For sources and attribution details, see [references/provenance.md](references/provenance.md).
 
-Предложения и исправления приветствуются: [CONTRIBUTING.md](CONTRIBUTING.md).
+Suggestions and fixes are welcome: see [CONTRIBUTING.md](CONTRIBUTING.md).
 
-## Лицензия
+## License
 
-MIT — см. [LICENSE](LICENSE). Лицензия репозитория не распространяется на внешние материалы, перечисленные как источники.
+MIT — see [LICENSE](LICENSE). The repository license does not cover external materials cited as sources.
